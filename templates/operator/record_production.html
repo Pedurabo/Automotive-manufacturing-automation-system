@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record Production Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+</head>
+<body>
+    <div class="header">MES Record Production Data</div>
+    <div class="dashboard-container">
+        <h2>Record Production Data for Work Order: {{ work_order.description }}</h2>
+        <form method="POST">
+            <label>VIN or Barcode:<br><input type="text" name="vin_or_barcode" required></label><br><br>
+            <label>Torque:<br><input type="number" step="0.01" name="torque"></label><br><br>
+            <label>Temperature:<br><input type="number" step="0.01" name="temperature"></label><br><br>
+            <input type="submit" value="Submit" class="button">
+        </form>
+        <a href="{{ url_for('shop_floor_operator.dashboard') }}" class="logout-btn">Back to Dashboard</a>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+            {% for message in messages %}
+              {{ message }}<br>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+</body>
+</html> 

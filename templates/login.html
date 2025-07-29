@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <h2>MES Login</h2>
+        <form method="POST" class="login-form" autocomplete="off">
+            {{ form.hidden_tag() }}
+            <label for="username">{{ form.username.label }}</label>
+            {{ form.username(size=32, id='username') }}
+            <label for="password">{{ form.password.label }}</label>
+            {{ form.password(size=32, id='password') }}
+            {{ form.submit(class_='login-btn') }}
+        </form>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+            {% for message in messages %}
+              {{ message }}<br>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html> 

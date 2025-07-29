@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record Defect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+</head>
+<body>
+    <div class="header">MES Record Defect</div>
+    <div class="dashboard-container">
+        <h2>Record Defect for Work Order: {{ work_order.description }}</h2>
+        <form method="POST">
+            <label>Description:<br><input type="text" name="description" required></label><br><br>
+            <label>Type:<br><input type="text" name="type" required></label><br><br>
+            <input type="submit" value="Submit" class="button">
+        </form>
+        <a href="{{ url_for('shop_floor_operator.dashboard') }}" class="logout-btn">Back to Dashboard</a>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+            {% for message in messages %}
+              {{ message }}<br>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+</body>
+</html> 

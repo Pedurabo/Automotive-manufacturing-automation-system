@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Floor Operator Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="user-info">
+            <div class="username">{{ current_user.username }}</div>
+            <div class="role">{{ current_user.role.name }}</div>
+        </div>
+        <nav>
+            <a href="{{ url_for('shop_floor_operator.dashboard') }}" class="active">Dashboard</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </div>
+    <div class="header">MES Shop Floor Operator Dashboard</div>
+    <div class="dashboard-container">
+        <h2>Shop Floor Operator Dashboard</h2>
+        <p>Welcome, {{ current_user.username }} (Shop Floor Operator)</p>
+        <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+            {% for message in messages %}
+              {{ message }}<br>
+            {% endfor %}
+            </div>
+            <script>showNotification("{{ messages[0] }}");</script>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+</body>
+</html> 
